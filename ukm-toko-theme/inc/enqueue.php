@@ -257,14 +257,16 @@ function ukm_remove_asset_version( $src ) {
 add_filter( 'style_loader_src', 'ukm_remove_asset_version', 9999 );
 add_filter( 'script_loader_src', 'ukm_remove_asset_version', 9999 );
 
-/**
- * Periksa apakah plugin WooCommerce aktif.
- *
- * Helper kecil agar tidak perlu mengulang pemeriksaan di setiap file.
- *
- * @since  1.0.0
- * @return bool True jika WooCommerce aktif.
- */
-function ukm_is_woocommerce_active() {
-	return class_exists( 'WooCommerce' );
+if ( ! function_exists( 'ukm_is_woocommerce_active' ) ) {
+	/**
+	 * Periksa apakah plugin WooCommerce aktif.
+	 *
+	 * Helper kecil agar tidak perlu mengulang pemeriksaan di setiap file.
+	 *
+	 * @since  1.0.0
+	 * @return bool True jika WooCommerce aktif.
+	 */
+	function ukm_is_woocommerce_active() {
+		return class_exists( 'WooCommerce' );
+	}
 }

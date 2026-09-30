@@ -446,8 +446,8 @@ function ukm_output_og_meta_tags() {
 	$og_title       = '';
 	$og_description = '';
 	$og_image       = '';
-	$og_type        = 'website';
-	$og_url         = esc_url( get_canonical_url() ?: get_permalink() );
+	$canonical      = wp_get_canonical_url();
+	$og_url         = esc_url( $canonical ? $canonical : ( is_singular() ? get_permalink() : home_url( '/' ) ) );
 
 	if ( is_singular() ) {
 		$og_title       = get_the_title();

@@ -371,16 +371,18 @@ add_filter( 'authenticate', 'ukm_limit_login_attempts', 30, 3 );
 // Helper Global
 // ============================================================
 
-/**
- * Cek apakah plugin WooCommerce aktif.
- *
- * Menggunakan pengecekan class WooCommerce yang lebih andal
- * dibandingkan dengan include_once file plugin — aman dipakai
- * sebelum WooCommerce selesai memuat.
- *
- * @since  1.0.0
- * @return bool True jika WooCommerce aktif.
- */
-function ukm_is_woocommerce_active() {
-	return class_exists( 'WooCommerce' );
+if ( ! function_exists( 'ukm_is_woocommerce_active' ) ) {
+	/**
+	 * Cek apakah plugin WooCommerce aktif.
+	 *
+	 * Menggunakan pengecekan class WooCommerce yang lebih andal
+	 * dibandingkan dengan include_once file plugin — aman dipakai
+	 * sebelum WooCommerce selesai memuat.
+	 *
+	 * @since  1.0.0
+	 * @return bool True jika WooCommerce aktif.
+	 */
+	function ukm_is_woocommerce_active() {
+		return class_exists( 'WooCommerce' );
+	}
 }

@@ -51,7 +51,7 @@ add_action( 'init', 'ukm_register_blocks' );
  *
  * @since 1.0.0
  */
-function ukm_enqueue_block_editor_assets() {
+function ukm_enqueue_custom_blocks_editor_assets() {
 
 	$blocks = array( 'hero-banner', 'product-grid', 'testimonial-slider' );
 
@@ -122,7 +122,7 @@ function ukm_enqueue_block_editor_assets() {
 		)
 	);
 }
-add_action( 'enqueue_block_editor_assets', 'ukm_enqueue_block_editor_assets' );
+add_action( 'enqueue_block_editor_assets', 'ukm_enqueue_custom_blocks_editor_assets' );
 
 // ============================================================
 // Render Callbacks (Server-Side Render)
