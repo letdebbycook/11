@@ -1,0 +1,134 @@
+{
+  "key": "group_ukm_spesifikasi_produk",
+  "title": "Spesifikasi Produk",
+  "fields": [
+    {
+      "key": "field_ukm_harga",
+      "label": "Harga Jual",
+      "name": "_ukm_harga",
+      "type": "number",
+      "instructions": "Masukkan harga jual dalam Rupiah (tanpa titik/koma). Contoh: 75000",
+      "required": 1,
+      "min": 0,
+      "step": 100,
+      "prepend": "Rp",
+      "placeholder": "75000"
+    },
+    {
+      "key": "field_ukm_harga_modal",
+      "label": "Harga Modal",
+      "name": "_ukm_harga_modal",
+      "type": "number",
+      "instructions": "Harga modal/beli. Tidak ditampilkan ke pengunjung.",
+      "required": 0,
+      "min": 0,
+      "step": 100,
+      "prepend": "Rp"
+    },
+    {
+      "key": "field_ukm_stok",
+      "label": "Jumlah Stok",
+      "name": "_ukm_stok",
+      "type": "number",
+      "instructions": "Jumlah stok yang tersedia saat ini.",
+      "required": 1,
+      "min": 0,
+      "step": 1,
+      "append": "unit",
+      "placeholder": "0",
+      "default_value": 0
+    },
+    {
+      "key": "field_ukm_satuan",
+      "label": "Satuan",
+      "name": "_ukm_satuan",
+      "type": "select",
+      "instructions": "Pilih satuan jual produk.",
+      "required": 1,
+      "choices": {
+        "pcs": "Pcs (satuan)",
+        "kg": "Kg (kilogram)",
+        "gram": "Gram",
+        "liter": "Liter",
+        "ml": "Ml (mililiter)",
+        "karton": "Karton",
+        "lusin": "Lusin",
+        "pak": "Pak",
+        "botol": "Botol",
+        "sachet": "Sachet"
+      },
+      "default_value": "pcs",
+      "allow_null": 0,
+      "multiple": 0,
+      "ui": 1,
+      "return_format": "value"
+    },
+    {
+      "key": "field_ukm_berat",
+      "label": "Berat",
+      "name": "_ukm_berat",
+      "type": "number",
+      "instructions": "Berat produk dalam gram. Digunakan untuk kalkulasi ongkos kirim.",
+      "required": 0,
+      "min": 0,
+      "step": 1,
+      "append": "gram"
+    },
+    {
+      "key": "field_ukm_sku",
+      "label": "Kode Produk (SKU)",
+      "name": "_ukm_sku",
+      "type": "text",
+      "instructions": "Kode unik produk untuk inventaris. Contoh: SBK-001",
+      "required": 0,
+      "maxlength": 50,
+      "placeholder": "SBK-001"
+    },
+    {
+      "key": "field_ukm_status_produk",
+      "label": "Status Produk",
+      "name": "_ukm_status_produk",
+      "type": "select",
+      "instructions": "Status ketersediaan produk.",
+      "required": 1,
+      "choices": {
+        "tersedia": "Tersedia",
+        "habis": "Stok Habis",
+        "pesan_dulu": "Indent / Pesan Dulu",
+        "dihentikan": "Tidak Dijual Lagi"
+      },
+      "default_value": "tersedia",
+      "allow_null": 0,
+      "ui": 1,
+      "return_format": "value"
+    },
+    {
+      "key": "field_ukm_wa_pesan",
+      "label": "Nomor WhatsApp Pemesanan",
+      "name": "_ukm_wa_pesan",
+      "type": "text",
+      "instructions": "Nomor WhatsApp untuk tombol \"Pesan via WA\". Format: 6281234567890 (tanpa + atau 0 di depan).",
+      "required": 0,
+      "placeholder": "6281234567890",
+      "maxlength": 20
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "post_type",
+        "operator": "==",
+        "value": "produk"
+      }
+    ]
+  ],
+  "menu_order": 0,
+  "position": "normal",
+  "style": "default",
+  "label_placement": "top",
+  "instruction_placement": "label",
+  "hide_on_screen": "",
+  "active": true,
+  "description": "Field spesifikasi lengkap untuk produk katalog UKM.",
+  "modified": 1759230000
+}

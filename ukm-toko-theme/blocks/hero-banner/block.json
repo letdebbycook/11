@@ -1,0 +1,61 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "ukm/hero-banner",
+  "version": "1.0.0",
+  "title": "UKM: Hero Banner",
+  "category": "theme",
+  "icon": "cover-image",
+  "description": "Hero banner dengan judul, subjudul, tombol CTA, dan gambar latar belakang.",
+  "keywords": ["hero", "banner", "cta", "toko", "sembako"],
+  "textdomain": "ukm-toko-theme",
+  "attributes": {
+    "judul": {
+      "type": "string",
+      "default": "Toko Sembako Berkah Murah & Lengkap"
+    },
+    "subjudul": {
+      "type": "string",
+      "default": "Pusat belanja kebutuhan pokok keluarga dan warung dengan harga bersaing serta pengiriman cepat."
+    },
+    "label": {
+      "type": "string",
+      "default": "Pilihan Cerdas & Terjangkau"
+    },
+    "ctaLabel": {
+      "type": "string",
+      "default": "Belanja Sekarang"
+    },
+    "ctaUrl": {
+      "type": "string",
+      "default": "/produk"
+    },
+    "cta2Label": {
+      "type": "string",
+      "default": "Hubungi WhatsApp"
+    },
+    "cta2Url": {
+      "type": "string",
+      "default": ""
+    },
+    "bgImageUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "alignment": {
+      "type": "string",
+      "default": "center"
+    },
+    "overlayOpacity": {
+      "type": "number",
+      "default": 50
+    }
+  },
+  "supports": {
+    "align": ["wide", "full"],
+    "html": false
+  },
+  "editorScript": "ukm-block-hero-banner-editor",
+  "editorStyle": "ukm-block-hero-banner-editor-style",
+  "style": "ukm-block-hero-banner-style"
+}

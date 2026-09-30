@@ -149,8 +149,11 @@ function ukm_preload_fonts() {
 	);
 
 	foreach ( $fonts as $font_file ) {
-		$font_url = UKM_THEME_URI . 'assets/fonts/' . $font_file;
-		echo '<link rel="preload" href="' . esc_url( $font_url ) . '" as="font" type="font/woff2" crossorigin="anonymous">' . "\n";
+		$font_path = UKM_THEME_DIR . 'assets/fonts/' . $font_file;
+		if ( file_exists( $font_path ) ) {
+			$font_url = UKM_THEME_URI . 'assets/fonts/' . $font_file;
+			echo '<link rel="preload" href="' . esc_url( $font_url ) . '" as="font" type="font/woff2" crossorigin="anonymous">' . "\n";
+		}
 	}
 }
 

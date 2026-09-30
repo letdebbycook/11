@@ -1,0 +1,11 @@
+/**
+ * Stylesheet Editor untuk Blok Product Grid (ukm/product-grid)
+ */
+
+.wp-block-ukm-product-grid {
+  margin: 1.5rem 0;
+}
+
+.ukm-editor-product-grid-preview {
+  font-family: inherit;
+}

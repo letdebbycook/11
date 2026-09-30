@@ -52,6 +52,7 @@ $ukm_inc_files = array(
 	'inc/settings-page.php',  // Halaman opsi global (fallback ACF Options Page)
 	'inc/woocommerce.php',    // Dukungan dan kustomisasi WooCommerce
 	'inc/seo.php',            // Schema JSON-LD, breadcrumb, Open Graph
+	'inc/blocks.php',         // Blok Gutenberg custom (Hero, Product Grid, Testimonial)
 	'inc/template-functions.php', // Fungsi pembantu untuk template
 );
 

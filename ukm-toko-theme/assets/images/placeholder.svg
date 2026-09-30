@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="600" height="600" fill="none">
+  <rect width="600" height="600" fill="#F1F5F9"/>
+  <rect x="220" y="220" width="160" height="160" rx="24" fill="#E2E8F0"/>
+  <path d="M260 330L290 290L315 315L345 275L380 330H260Z" fill="#94A3B8"/>
+  <circle cx="285" cy="270" r="14" fill="#CBD5E1"/>
+  <text x="300" y="420" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="600" fill="#94A3B8" text-anchor="middle">Foto Produk Belum Tersedia</text>
+</svg>

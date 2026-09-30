@@ -1,0 +1,70 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "ukm/testimonial-slider",
+  "version": "1.0.0",
+  "title": "UKM: Testimonial Slider",
+  "category": "theme",
+  "icon": "format-quote",
+  "description": "Slider testimonial pelanggan interaktif dengan rating bintang, kontrol navigasi, dan dukungan autoplay.",
+  "keywords": ["testimoni", "slider", "review", "ulasan", "pelanggan"],
+  "textdomain": "ukm-toko-theme",
+  "attributes": {
+    "judul": {
+      "type": "string",
+      "default": "Kata Pelanggan Setia Kami"
+    },
+    "label": {
+      "type": "string",
+      "default": "Testimoni & Ulasan"
+    },
+    "deskripsi": {
+      "type": "string",
+      "default": "Pengalaman nyata pelanggan yang telah mempercayakan kebutuhan sembako hariannya kepada kami."
+    },
+    "testimoni": {
+      "type": "array",
+      "default": [
+        {
+          "nama": "Bu Sari Rahayu",
+          "peran": "Ibu Rumah Tangga",
+          "ulasan": "Belanja di sini sangat mudah dan harganya terjangkau. Barang selalu fresh dan pengiriman cepat. Sangat direkomendasikan untuk belanja bulanan!",
+          "bintang": 5,
+          "inisial": "BS",
+          "fotoUrl": ""
+        },
+        {
+          "nama": "Pak Bambang Irawan",
+          "peran": "Pemilik Warung Madura",
+          "ulasan": "Saya sudah langganan kulakan di sini sejak 2 tahun lalu. Stok sembako lengkap, harga grosir bersaing, dan pelayanan cepat.",
+          "bintang": 5,
+          "inisial": "PB",
+          "fotoUrl": ""
+        },
+        {
+          "nama": "Ibu Dewi Lestari",
+          "peran": "Pelanggan Online",
+          "ulasan": "Kualitas beras dan minyaknya selalu prima. Bisa order via WhatsApp langsung diantar ke rumah tanpa repot!",
+          "bintang": 5,
+          "inisial": "ID",
+          "fotoUrl": ""
+        }
+      ]
+    },
+    "autoplay": {
+      "type": "boolean",
+      "default": true
+    },
+    "delayDetik": {
+      "type": "number",
+      "default": 5
+    }
+  },
+  "supports": {
+    "align": ["wide", "full"],
+    "html": false
+  },
+  "editorScript": "ukm-block-testimonial-slider-editor",
+  "editorStyle": "ukm-block-testimonial-slider-editor-style",
+  "style": "ukm-block-testimonial-slider-style"
+}

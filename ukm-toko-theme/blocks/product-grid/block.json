@@ -1,0 +1,53 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "ukm/product-grid",
+  "version": "1.0.0",
+  "title": "UKM: Product Grid",
+  "category": "theme",
+  "icon": "grid-view",
+  "description": "Grid katalog produk dengan filter kategori, pagination/link lihat semua, dan tampilan responsif.",
+  "keywords": ["produk", "grid", "katalog", "sembako", "toko"],
+  "textdomain": "ukm-toko-theme",
+  "attributes": {
+    "judul": {
+      "type": "string",
+      "default": "Produk Unggulan & Terbaru"
+    },
+    "label": {
+      "type": "string",
+      "default": "Katalog Belanja"
+    },
+    "deskripsi": {
+      "type": "string",
+      "default": "Pilihan kebutuhan dapur dan pokok terbaik langsung dari pemasok terpercaya."
+    },
+    "jumlah": {
+      "type": "number",
+      "default": 8
+    },
+    "kategoriSlug": {
+      "type": "string",
+      "default": ""
+    },
+    "kolom": {
+      "type": "number",
+      "default": 4
+    },
+    "tampilTombolLihatSemua": {
+      "type": "boolean",
+      "default": true
+    },
+    "tampilFilter": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "supports": {
+    "align": ["wide", "full"],
+    "html": false
+  },
+  "editorScript": "ukm-block-product-grid-editor",
+  "editorStyle": "ukm-block-product-grid-editor-style",
+  "style": "ukm-block-product-grid-style"
+}

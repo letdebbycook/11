@@ -1,0 +1,11 @@
+/**
+ * Stylesheet Editor untuk Blok Testimonial Slider (ukm/testimonial-slider)
+ */
+
+.wp-block-ukm-testimonial-slider {
+  margin: 1.5rem 0;
+}
+
+.ukm-editor-testimonial-preview {
+  font-family: inherit;
+}

@@ -1,0 +1,71 @@
+# Copyright (C) 2026 ukm-toko-theme
+# This file is distributed under the GNU General Public License v2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: ukm-toko-theme 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/theme/ukm-toko-theme\n"
+"POT-Creation-Date: 2026-09-30 08:00:00+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2026-YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"X-Generator: WP-CLI 2.10.0\n"
+"X-Domain: ukm-toko-theme\n"
+
+#: functions.php
+msgid "File tema tidak ditemukan: %s"
+msgstr ""
+
+#: inc/setup.php
+msgid "Menu Utama"
+msgstr ""
+
+#: inc/setup.php
+msgid "Menu Footer"
+msgstr ""
+
+#: inc/setup.php
+msgid "Sidebar Blog"
+msgstr ""
+
+#: inc/setup.php
+msgid "Sidebar Toko"
+msgstr ""
+
+#: inc/cpt.php
+msgid "Produk"
+msgstr ""
+
+#: inc/cpt.php
+msgid "Tambah Produk Baru"
+msgstr ""
+
+#: inc/cpt.php
+msgid "Klien"
+msgstr ""
+
+#: inc/taxonomy.php
+msgid "Kategori Produk"
+msgstr ""
+
+#: inc/blocks.php
+msgid "Belanja Mudah"
+msgstr ""
+
+#: inc/blocks.php
+msgid "Lihat Produk"
+msgstr ""
+
+#: inc/blocks.php
+msgid "Hubungi Kami"
+msgstr ""
+
+#: inc/blocks.php
+msgid "Produk Tersedia"
+msgstr ""
+
+#: inc/blocks.php
+msgid "Kata Pelanggan"
+msgstr ""

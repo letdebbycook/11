@@ -384,16 +384,3 @@ add_filter( 'authenticate', 'ukm_limit_login_attempts', 30, 3 );
 function ukm_is_woocommerce_active() {
 	return class_exists( 'WooCommerce' );
 }
-
-/**
- * Sanitasi nilai float dari input pengguna.
- *
- * @since  1.0.0
- * @param  mixed $value Nilai yang akan disanitasi.
- * @return float Nilai float yang sudah disanitasi, atau 0.
- */
-function ukm_sanitize_float( $value ) {
-	// Hapus semua karakter selain angka, titik, dan minus.
-	$cleaned = preg_replace( '/[^0-9.\-]/', '', (string) $value );
-	return (float) $cleaned;
-}

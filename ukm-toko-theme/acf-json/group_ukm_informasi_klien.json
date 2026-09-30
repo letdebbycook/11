@@ -1,0 +1,92 @@
+{
+  "key": "group_ukm_informasi_klien",
+  "title": "Informasi Kontak Klien",
+  "fields": [
+    {
+      "key": "field_ukm_klien_email",
+      "label": "Email",
+      "name": "_ukm_klien_email",
+      "type": "email",
+      "instructions": "Alamat email klien.",
+      "required": 0,
+      "placeholder": "email@contoh.com"
+    },
+    {
+      "key": "field_ukm_klien_telepon",
+      "label": "Nomor Telepon",
+      "name": "_ukm_klien_telepon",
+      "type": "text",
+      "instructions": "Nomor telepon atau HP klien.",
+      "required": 0,
+      "placeholder": "08123456789",
+      "maxlength": 20
+    },
+    {
+      "key": "field_ukm_klien_whatsapp",
+      "label": "Nomor WhatsApp",
+      "name": "_ukm_klien_whatsapp",
+      "type": "text",
+      "instructions": "Nomor WhatsApp klien. Format: 6281234567890",
+      "required": 0,
+      "placeholder": "6281234567890",
+      "maxlength": 20
+    },
+    {
+      "key": "field_ukm_klien_lokasi",
+      "label": "Lokasi / Alamat",
+      "name": "_ukm_klien_lokasi",
+      "type": "textarea",
+      "instructions": "Alamat lengkap atau nama daerah klien.",
+      "required": 0,
+      "rows": 3,
+      "placeholder": "Jl. Contoh No. 1, Kelurahan, Kecamatan, Kota"
+    },
+    {
+      "key": "field_ukm_klien_jenis",
+      "label": "Jenis Klien",
+      "name": "_ukm_klien_jenis",
+      "type": "select",
+      "instructions": "Tipe bisnis klien.",
+      "required": 0,
+      "choices": {
+        "warung": "Warung / Toko Kecil",
+        "warung_makan": "Warung Makan / Restoran",
+        "grosir": "Grosir",
+        "perorangan": "Perorangan",
+        "institusi": "Institusi / Kantor",
+        "lainnya": "Lainnya"
+      },
+      "default_value": "warung",
+      "allow_null": 1,
+      "ui": 1,
+      "return_format": "value"
+    },
+    {
+      "key": "field_ukm_klien_catatan",
+      "label": "Catatan Internal",
+      "name": "_ukm_klien_catatan",
+      "type": "textarea",
+      "instructions": "Catatan internal tentang klien ini. Tidak ditampilkan ke publik.",
+      "required": 0,
+      "rows": 4
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "post_type",
+        "operator": "==",
+        "value": "klien"
+      }
+    ]
+  ],
+  "menu_order": 0,
+  "position": "normal",
+  "style": "default",
+  "label_placement": "top",
+  "instruction_placement": "label",
+  "hide_on_screen": "",
+  "active": true,
+  "description": "Field informasi kontak lengkap untuk CPT klien UKM.",
+  "modified": 1759230000
+}
