@@ -1,0 +1,80 @@
+# ============================================================
+# .gitignore — ukm-toko-theme / wordpress-ukm-theme
+# Mengecualikan file sensitif, build artifacts, dan upload
+# ============================================================
+
+# ---- Konfigurasi WordPress (JANGAN pernah commit!) ----
+wp-config.php
+.env
+.env.*
+*.env
+
+# ---- Upload & Media WordPress ----
+wp-content/uploads/
+uploads/
+
+# ---- Backup & Export ----
+*.sql
+*.sql.gz
+*.zip
+*.tar.gz
+backup/
+backups/
+*.bak
+
+# ---- Node.js (untuk build blok Gutenberg lokal) ----
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+package-lock.json
+
+# ---- Build artifacts (dikecualikan dari repo; upload manual ke server) ----
+# Catatan: file hasil build blok DI-COMMIT ke repo karena server tidak punya Node.js
+# Hanya file sumber yang tidak perlu di-commit:
+# /blocks/*/src/ bisa dikecualikan tapi kita sertakan untuk transparansi
+
+# ---- Cache & Log ----
+*.log
+*.cache
+.cache/
+/wp-content/cache/
+/wp-content/upgrade/
+
+# ---- OS Files ----
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# ---- Editor & IDE ----
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.sublime-project
+.sublime-workspace
+
+# ---- Plugin & Core WordPress (hanya tema yang di-track) ----
+# Jika repo ini hanya berisi tema, tidak perlu kecualikan ini
+# Jika repo berisi full WordPress install, uncomment:
+# /wp-admin/
+# /wp-includes/
+# /wp-content/plugins/
+# /wp-content/themes/!ukm-toko-theme/
+
+# ---- Sertifikat SSL & Kunci ----
+*.pem
+*.key
+*.crt
+*.p12
+
+# ---- File Komposer (jika dipakai) ----
+/vendor/
+composer.lock

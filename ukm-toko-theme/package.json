@@ -1,0 +1,16 @@
+{
+  "name": "ukm-toko-theme",
+  "version": "1.0.0",
+  "description": "Build pipeline untuk blok Gutenberg custom tema ukm-toko-theme",
+  "private": true,
+  "scripts": {
+    "build": "wp-scripts build",
+    "start": "wp-scripts start",
+    "lint:js": "wp-scripts lint-js",
+    "lint:css": "wp-scripts lint-style",
+    "packages-update": "wp-scripts packages-update"
+  },
+  "devDependencies": {
+    "@wordpress/scripts": "^27.0.0"
+  }
+}
