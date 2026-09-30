@@ -21,20 +21,27 @@ get_header();
 	 * tampilkan konten halaman tersebut (termasuk blok custom Hero Banner,
 	 * Product Grid, Testimonial Slider yang sudah didaftarkan).
 	 */
-	if ( have_posts() ) :
+	$has_custom_page_content = false;
+
+	if ( is_page() && have_posts() ) :
 		while ( have_posts() ) :
 			the_post();
-			?>
-			<article id="post-<?php the_ID(); ?>" <?php post_class( 'ukm-front-page-content' ); ?>>
-				<div class="entry-content">
-					<?php the_content(); ?>
-				</div>
-			</article>
-			<?php
+			if ( ! empty( trim( get_the_content() ) ) ) :
+				$has_custom_page_content = true;
+				?>
+				<article id="post-<?php the_ID(); ?>" <?php post_class( 'ukm-front-page-content' ); ?>>
+					<div class="entry-content">
+						<?php the_content(); ?>
+					</div>
+				</article>
+				<?php
+			endif;
 		endwhile;
-	else :
+	endif;
+
+	if ( ! $has_custom_page_content ) :
 		/**
-		 * Fallback: jika belum ada konten halaman, tampilkan seksi default.
+		 * Fallback: jika belum ada konten halaman statis atau belum ada blok, tampilkan seksi default.
 		 * Ini berguna saat tema baru diaktifkan dan belum ada blok yang ditambahkan.
 		 */
 		?>

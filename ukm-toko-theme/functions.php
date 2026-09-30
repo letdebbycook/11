@@ -50,6 +50,7 @@ $ukm_inc_files = array(
 	'inc/taxonomy.php',       // Custom Taxonomies
 	'inc/acf.php',            // Advanced Custom Fields & fallback meta boxes
 	'inc/settings-page.php',  // Halaman opsi global (fallback ACF Options Page)
+	'inc/admin-dashboard.php', // Dashboard modern admin Toko UKM & widget ringkasan
 	'inc/woocommerce.php',    // Dukungan dan kustomisasi WooCommerce
 	'inc/seo.php',            // Schema JSON-LD, breadcrumb, Open Graph
 	'inc/blocks.php',         // Blok Gutenberg custom (Hero, Product Grid, Testimonial)

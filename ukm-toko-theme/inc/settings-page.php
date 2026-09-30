@@ -215,14 +215,14 @@ function ukm_render_settings_field( $args ) {
 
 	if ( 'textarea' === $type ) {
 		printf(
-			'<textarea id="%1$s" name="%1$s" rows="3" class="regular-text" placeholder="%2$s">%3$s</textarea>',
+			'<textarea id="%1$s" name="%1$s" rows="3" class="ukm-admin-textarea regular-text" placeholder="%2$s">%3$s</textarea>',
 			esc_attr( $id ),
 			esc_attr( $placeholder ),
 			esc_textarea( $value )
 		);
 	} else {
 		printf(
-			'<input type="%1$s" id="%2$s" name="%2$s" value="%3$s" placeholder="%4$s" class="regular-text" maxlength="%5$d" />',
+			'<input type="%1$s" id="%2$s" name="%2$s" value="%3$s" placeholder="%4$s" class="ukm-admin-input regular-text" maxlength="%5$d" />',
 			esc_attr( $type ),
 			esc_attr( $id ),
 			esc_attr( $value ),
@@ -232,7 +232,7 @@ function ukm_render_settings_field( $args ) {
 	}
 
 	if ( $description ) {
-		echo '<p class="description">' . esc_html( $description ) . '</p>';
+		echo '<p class="description" style="color:var(--ukm-admin-text-muted,#64748b);font-size:12px;margin-top:4px">' . esc_html( $description ) . '</p>';
 	}
 }
 
@@ -265,24 +265,54 @@ function ukm_render_settings_page() {
 		wp_die( esc_html__( 'Anda tidak memiliki izin untuk mengakses halaman ini.', 'ukm-toko-theme' ) );
 	}
 	?>
-	<div class="wrap">
-		<h1><?php echo esc_html( get_admin_page_title() ); ?></h1>
+	<div class="wrap ukm-admin-wrap">
+
+		<!-- HERO HEADER PENGATURAN -->
+		<section class="ukm-admin-hero" style="margin-bottom:24px;padding:24px 30px">
+			<div class="ukm-admin-hero__content">
+				<h1 class="ukm-admin-hero__title" style="font-size:22px">
+					<span class="dashicons dashicons-admin-generic" style="font-size:22px;width:22px;height:22px;vertical-align:middle;margin-right:6px"></span>
+					<?php esc_html_e( 'Pengaturan Toko UKM', 'ukm-toko-theme' ); ?>
+				</h1>
+				<p class="ukm-admin-hero__desc">
+					<?php esc_html_e( 'Kelola identitas toko, nomor WhatsApp pemesanan, jam operasional, dan akun media sosial.', 'ukm-toko-theme' ); ?>
+				</p>
+			</div>
+			<div class="ukm-admin-hero__actions">
+				<a href="<?php echo esc_url( admin_url( 'admin.php?page=ukm-toko-dashboard' ) ); ?>" class="ukm-admin-btn ukm-admin-btn--white">
+					&larr; <?php esc_html_e( 'Kembali ke Dashboard UKM', 'ukm-toko-theme' ); ?>
+				</a>
+			</div>
+		</section>
 
 		<?php
 		// Tampilkan pesan sukses setelah save.
 		if ( isset( $_GET['settings-updated'] ) ) {
-			add_settings_error( 'ukm_toko_settings_group', 'ukm_settings_saved', __( 'Pengaturan berhasil disimpan.', 'ukm-toko-theme' ), 'success' );
+			add_settings_error( 'ukm_toko_settings_group', 'ukm_settings_saved', __( 'Pengaturan toko berhasil diperbarui.', 'ukm-toko-theme' ), 'success' );
 		}
 		settings_errors( 'ukm_toko_settings_group' );
 		?>
 
-		<form method="post" action="options.php">
-			<?php
-			settings_fields( 'ukm_toko_settings_group' );
-			do_settings_sections( 'ukm-toko-settings' );
-			submit_button( __( 'Simpan Pengaturan', 'ukm-toko-theme' ) );
-			?>
-		</form>
+		<div class="ukm-admin-card">
+			<div class="ukm-admin-card__header">
+				<h2 class="ukm-admin-card__title">
+					<span class="dashicons dashicons-forms"></span>
+					<?php esc_html_e( 'Formulir Konfigurasi Global', 'ukm-toko-theme' ); ?>
+				</h2>
+			</div>
+			<div class="ukm-admin-card__body">
+				<form method="post" action="options.php">
+					<?php
+					settings_fields( 'ukm_toko_settings_group' );
+					do_settings_sections( 'ukm-toko-settings' );
+					?>
+					<div style="margin-top:28px;padding-top:20px;border-top:1px solid var(--ukm-admin-border,#e2e8f0)">
+						<?php submit_button( __( 'Simpan Perubahan Pengaturan', 'ukm-toko-theme' ), 'primary large' ); ?>
+					</div>
+				</form>
+			</div>
+		</div>
+
 	</div>
 	<?php
 }
