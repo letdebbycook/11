@@ -4,7 +4,7 @@ Theme URI:   https://github.com/wordpress-ukm-theme
 Author:      UKM Developer
 Author URI:  https://github.com/wordpress-ukm-theme
 Description: Tema WordPress custom untuk UKM toko sembako. Dibangun dengan standar WordPress Coding Standards, mendukung Custom Post Types, Advanced Custom Fields, blok Gutenberg custom, dan integrasi WooCommerce. Responsif, berperforma tinggi (Lighthouse 95+), dan siap deploy ke shared hosting cPanel.
-Version:     1.0.0
+Version:     1.1.1
 Requires at least: 6.6
 Requires PHP:      8.1
 License:           GNU General Public License v2 or later
@@ -114,7 +114,9 @@ Daftar isi:
     /* Layout */
     --ukm-container-max-width:  1280px;
     --ukm-container-padding:    var(--ukm-space-6);
-    --ukm-header-height:        70px;
+    --ukm-header-height:        80px;
+    --ukm-navbar-height:         52px;
+    --ukm-topbar-height:         38px;
 
     /* Transisi */
     --ukm-transition-fast:   150ms ease;
@@ -401,8 +403,15 @@ hr {
 /* Grid produk */
 .ukm-product-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: var(--ukm-space-6);
+}
+
+/* Pastikan max 4 kolom di desktop */
+@media (min-width: 1024px) {
+    .ukm-product-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
 }
 
 /* Section heading */
@@ -433,51 +442,20 @@ hr {
 
 
 /* ==========================================================================
-   5. HEADER & NAVIGASI
+   5. HEADER & NAVIGASI (Barter split layout: TopBar + Header + Navbar)
    ========================================================================== */
 
-.ukm-site-header {
-    position: sticky;
-    top: 0;
-    z-index: var(--ukm-z-index-sticky);
-    background-color: var(--ukm-color-white);
-    border-bottom: 1px solid var(--ukm-color-gray-300);
-    box-shadow: var(--ukm-shadow-sm);
-    transition: box-shadow var(--ukm-transition-base);
-}
-
-.ukm-site-header.is-scrolled {
-    box-shadow: var(--ukm-shadow-md);
-}
-
-.ukm-header-inner {
+/* Site wrapper dengan sticky stacking context yang benar */
+.ukm-site-wrapper {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: var(--ukm-header-height);
-    gap: var(--ukm-space-6);
+    flex-direction: column;
+    min-height: 100vh;
 }
 
-/* Logo */
-.ukm-site-logo {
-    flex-shrink: 0;
-    text-decoration: none;
-}
-
+/* Logo img override */
 .ukm-site-logo img {
     height: 44px;
     width: auto;
-}
-
-.ukm-site-logo-text {
-    font-size: var(--ukm-font-size-lg);
-    font-weight: var(--ukm-font-weight-bold);
-    color: var(--ukm-color-gray-900);
-    line-height: 1;
-}
-
-.ukm-site-logo-text span {
-    color: var(--ukm-color-primary);
 }
 
 /* Navigasi utama */
@@ -1604,3 +1582,233 @@ hr {
     0% { background-position: 200% 0; }
     100% { background-position: -200% 0; }
 }
+
+/* ==========================================================================
+   15. BARTER GRID CORE LAYOUT
+   ========================================================================== */
+
+/* Top bar */
+.ukm-top-bar {
+    background-color: var(--ukm-color-primary-dark);
+    color: rgba(255, 255, 255, 0.9);
+    font-size: var(--ukm-font-size-sm);
+    padding: 10px 0;
+}
+.ukm-top-bar__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--ukm-space-4);
+}
+.ukm-top-bar__left {
+    display: flex;
+    align-items: center;
+    gap: var(--ukm-space-3);
+}
+.ukm-top-bar__item {
+    display: flex;
+    align-items: center;
+    gap: var(--ukm-space-2);
+}
+.ukm-top-bar__link {
+    color: rgba(255, 255, 255, 0.9);
+}
+.ukm-top-bar__cta {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 18px;
+    background-color: rgba(255, 255, 255, 0.15);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: var(--ukm-border-radius-base);
+    font-size: var(--ukm-font-size-sm);
+    font-weight: var(--ukm-font-weight-medium);
+}
+
+/* Services strip */
+.ukm-services-strip {
+    background-color: var(--ukm-color-primary-dark);
+    padding: var(--ukm-space-6) 0;
+}
+.ukm-services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: var(--ukm-space-4);
+}
+.ukm-service-item {
+    display: flex;
+    align-items: center;
+    gap: var(--ukm-space-4);
+    padding: var(--ukm-space-2);
+}
+.ukm-service-icon {
+    flex-shrink: 0;
+    width: 52px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: var(--ukm-border-radius-md);
+    color: #fff;
+}
+.ukm-service-title {
+    font-size: var(--ukm-font-size-sm);
+    font-weight: var(--ukm-font-weight-semibold);
+    color: #fff;
+    margin: 0 0 4px;
+}
+.ukm-service-desc {
+    font-size: var(--ukm-font-size-xs);
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0;
+}
+
+/* Categories grid */
+.ukm-categories-section {
+    background-color: var(--ukm-color-gray-50);
+}
+.ukm-categories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: var(--ukm-space-4);
+}
+@media (min-width: 768px) {
+    .ukm-categories-grid {
+        grid-template-columns: repeat(6, 1fr);
+    }
+}
+.ukm-category-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--ukm-space-3);
+    padding: var(--ukm-space-6) var(--ukm-space-4);
+    background: var(--ukm-color-white);
+    border: 1.5px solid var(--ukm-color-gray-200);
+    border-radius: var(--ukm-border-radius-lg);
+    text-decoration: none;
+    text-align: center;
+    transition: transform var(--ukm-transition-base), box-shadow var(--ukm-transition-base), border-color var(--ukm-transition-base);
+}
+.ukm-category-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--ukm-shadow-md);
+    border-color: var(--ukm-color-primary);
+}
+.ukm-category-card__icon {
+    width: 56px;
+    height: 56px;
+    border-radius: var(--ukm-border-radius-md);
+    background-color: rgba(45, 106, 79, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ukm-color-primary);
+}
+.ukm-category-card__name {
+    font-size: var(--ukm-font-size-sm);
+    font-weight: var(--ukm-font-weight-semibold);
+    color: var(--ukm-color-gray-900);
+    margin: 0;
+}
+.ukm-category-card__count {
+    font-size: var(--ukm-font-size-xs);
+    color: var(--ukm-color-gray-500);
+}
+
+/* Product grid */
+.ukm-product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: var(--ukm-space-6);
+}
+@media (min-width: 768px) {
+    .ukm-product-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+@media (min-width: 1024px) {
+    .ukm-product-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+.ukm-product-card {
+    background: var(--ukm-color-white);
+    border-radius: var(--ukm-border-radius-lg);
+    border: 1px solid var(--ukm-color-gray-200);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform var(--ukm-transition-base), box-shadow var(--ukm-transition-base);
+}
+.ukm-product-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--ukm-shadow-lg);
+}
+.ukm-product-card__image-wrap {
+    position: relative;
+    padding-top: 75%;
+    overflow: hidden;
+    background: var(--ukm-color-gray-100);
+    display: block;
+}
+.ukm-product-card__image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--ukm-transition-base);
+}
+.ukm-product-card:hover .ukm-product-card__image {
+    transform: scale(1.05);
+}
+.ukm-product-card__body {
+    padding: var(--ukm-space-4);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+.ukm-product-card__category {
+    font-size: var(--ukm-font-size-xs);
+    color: var(--ukm-color-primary);
+    font-weight: var(--ukm-font-weight-medium);
+    text-decoration: none;
+    margin-bottom: var(--ukm-space-1);
+    display: inline-block;
+}
+.ukm-product-card__title {
+    font-size: var(--ukm-font-size-base);
+    font-weight: var(--ukm-font-weight-semibold);
+    line-height: 1.3;
+    margin: 0 0 var(--ukm-space-2);
+}
+.ukm-product-card__title a {
+    color: var(--ukm-color-gray-900);
+    text-decoration: none;
+}
+.ukm-product-card__title a:hover {
+    color: var(--ukm-color-primary);
+}
+.ukm-product-card__price {
+    font-size: var(--ukm-font-size-base);
+    font-weight: var(--ukm-font-weight-bold);
+    color: var(--ukm-color-primary);
+    margin-top: auto;
+    padding-top: var(--ukm-space-2);
+}
+.ukm-product-card__stock {
+    font-size: var(--ukm-font-size-xs);
+    color: var(--ukm-color-gray-500);
+    margin: var(--ukm-space-1) 0 0;
+}
+.ukm-product-card__footer {
+    margin-top: var(--ukm-space-3);
+    padding-top: var(--ukm-space-3);
+    border-top: 1px solid var(--ukm-color-gray-100);
+    display: flex;
+    gap: var(--ukm-space-2);
+}
+

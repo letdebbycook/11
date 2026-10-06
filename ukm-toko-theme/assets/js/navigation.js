@@ -1,5 +1,5 @@
 /**
- * JavaScript navigasi: mobile menu, dropdown, panel pencarian.
+ * JavaScript navigasi: mobile menu, sticky header (Barter split layout).
  *
  * Prinsip:
  * - Tidak ada jQuery dependency.
@@ -15,12 +15,14 @@
 
 	/**
 	 * Toggle mobile menu.
+	 * Hamburger ada di header, mobile-nav ada di navbar.
 	 */
 	function initMobileMenu() {
-		var menuToggle  = document.getElementById( 'ukm-menu-toggle' );
-		var mobileNav   = document.getElementById( 'ukm-mobile-nav' );
+		var menuToggle = document.getElementById( 'ukm-menu-toggle' );
+		var mobileNav  = document.getElementById( 'ukm-mobile-nav' );
+		var navbar     = document.querySelector( '.ukm-site-navbar' );
 
-		if ( ! menuToggle || ! mobileNav ) {
+		if ( ! menuToggle ) {
 			return;
 		}
 
@@ -28,21 +30,31 @@
 			var isOpen = menuToggle.getAttribute( 'aria-expanded' ) === 'true';
 
 			menuToggle.setAttribute( 'aria-expanded', isOpen ? 'false' : 'true' );
-			mobileNav.setAttribute( 'aria-hidden', isOpen ? 'true' : 'false' );
 
-			if ( isOpen ) {
-				mobileNav.hidden = true;
-				mobileNav.classList.remove( 'is-open' );
-				menuToggle.setAttribute( 'aria-label', ukmData.i18n.menuToggleOpen );
-			} else {
-				mobileNav.hidden = false;
-				mobileNav.classList.add( 'is-open' );
-				menuToggle.setAttribute( 'aria-label', ukmData.i18n.menuToggleClose );
+			if ( mobileNav ) {
+				mobileNav.setAttribute( 'aria-hidden', isOpen ? 'true' : 'false' );
+				if ( isOpen ) {
+					mobileNav.hidden = true;
+					mobileNav.classList.remove( 'is-open' );
+				} else {
+					mobileNav.hidden = false;
+					mobileNav.classList.add( 'is-open' );
+				}
 			}
+
+			if ( navbar ) {
+				navbar.classList.toggle( 'mobile-open', ! isOpen );
+			}
+
+			var label = isOpen
+				? ( window.ukmData && ukmData.i18n ? ukmData.i18n.menuToggleOpen : 'Buka menu' )
+				: ( window.ukmData && ukmData.i18n ? ukmData.i18n.menuToggleClose : 'Tutup menu' );
+			menuToggle.setAttribute( 'aria-label', label );
 		} );
 
 		// Tutup menu mobile jika klik di luar.
 		document.addEventListener( 'click', function ( event ) {
+			if ( ! mobileNav ) return;
 			if (
 				mobileNav.classList.contains( 'is-open' ) &&
 				! mobileNav.contains( event.target ) &&
@@ -52,109 +64,93 @@
 				mobileNav.setAttribute( 'aria-hidden', 'true' );
 				mobileNav.hidden = true;
 				mobileNav.classList.remove( 'is-open' );
-				menuToggle.setAttribute( 'aria-label', ukmData.i18n.menuToggleOpen );
+				if ( navbar ) navbar.classList.remove( 'mobile-open' );
+				menuToggle.setAttribute( 'aria-label', window.ukmData && ukmData.i18n ? ukmData.i18n.menuToggleOpen : 'Buka menu' );
 			}
 		} );
 
 		// Tutup menu jika tekan Escape.
 		document.addEventListener( 'keydown', function ( event ) {
+			if ( ! mobileNav ) return;
 			if ( event.key === 'Escape' && mobileNav.classList.contains( 'is-open' ) ) {
 				menuToggle.setAttribute( 'aria-expanded', 'false' );
 				mobileNav.setAttribute( 'aria-hidden', 'true' );
 				mobileNav.hidden = true;
 				mobileNav.classList.remove( 'is-open' );
+				if ( navbar ) navbar.classList.remove( 'mobile-open' );
 				menuToggle.focus();
 			}
 		} );
 	}
 
 	/**
-	 * Toggle panel pencarian.
-	 */
-	function initSearchPanel() {
-		var searchToggle = document.getElementById( 'ukm-search-toggle' );
-		var searchPanel  = document.getElementById( 'ukm-search-panel' );
-		var searchInput  = document.getElementById( 'ukm-search-input' );
-
-		if ( ! searchToggle || ! searchPanel ) {
-			return;
-		}
-
-		searchToggle.addEventListener( 'click', function () {
-			var isOpen = searchToggle.getAttribute( 'aria-expanded' ) === 'true';
-
-			searchToggle.setAttribute( 'aria-expanded', isOpen ? 'false' : 'true' );
-			searchPanel.setAttribute( 'aria-hidden', isOpen ? 'true' : 'false' );
-
-			if ( isOpen ) {
-				searchPanel.hidden = true;
-			} else {
-				searchPanel.hidden = false;
-				// Fokus ke input setelah panel terbuka.
-				setTimeout( function () {
-					if ( searchInput ) {
-						searchInput.focus();
-					}
-				}, 50 );
-			}
-		} );
-
-		// Tutup panel pencarian jika klik di luar.
-		document.addEventListener( 'click', function ( event ) {
-			if (
-				! searchPanel.hidden &&
-				! searchPanel.contains( event.target ) &&
-				! searchToggle.contains( event.target )
-			) {
-				searchToggle.setAttribute( 'aria-expanded', 'false' );
-				searchPanel.setAttribute( 'aria-hidden', 'true' );
-				searchPanel.hidden = true;
-			}
-		} );
-
-		// Tutup panel pencarian jika tekan Escape.
-		document.addEventListener( 'keydown', function ( event ) {
-			if ( event.key === 'Escape' && ! searchPanel.hidden ) {
-				searchToggle.setAttribute( 'aria-expanded', 'false' );
-				searchPanel.setAttribute( 'aria-hidden', 'true' );
-				searchPanel.hidden = true;
-				searchToggle.focus();
-			}
-		} );
-	}
-
-	/**
-	 * Tambahkan class 'is-scrolled' ke header saat halaman di-scroll.
+	 * Sticky header dengan shadow saat scroll.
 	 */
 	function initStickyHeader() {
 		var header = document.querySelector( '.ukm-site-header' );
+		var navbar = document.querySelector( '.ukm-site-navbar' );
 
 		if ( ! header ) {
 			return;
 		}
 
-		var threshold = 50;
+		var threshold = 10;
 
 		function onScroll() {
 			if ( window.scrollY > threshold ) {
 				header.classList.add( 'is-scrolled' );
+				if ( navbar ) navbar.classList.add( 'is-scrolled' );
 			} else {
 				header.classList.remove( 'is-scrolled' );
+				if ( navbar ) navbar.classList.remove( 'is-scrolled' );
 			}
 		}
 
-		// Periksa posisi scroll saat halaman pertama dimuat.
 		onScroll();
-
-		// Gunakan passive event listener untuk performa scroll lebih baik.
 		window.addEventListener( 'scroll', onScroll, { passive: true } );
+	}
+
+	/**
+	 * Tambahkan efek hover underline aktif ke navbar item berdasarkan URL saat ini.
+	 */
+	function initNavbarActiveState() {
+		var navLinks = document.querySelectorAll( '.ukm-navbar-menu a' );
+		var currentUrl = window.location.href;
+
+		navLinks.forEach( function ( link ) {
+			if ( link.href === currentUrl || currentUrl.indexOf( link.href ) === 0 ) {
+				link.parentElement.classList.add( 'current-menu-item' );
+			}
+		} );
+	}
+
+	/**
+	 * Smooth scroll untuk anchor links di halaman yang sama.
+	 */
+	function initSmoothScroll() {
+		var headerHeight = document.querySelector( '.ukm-site-header' );
+		var navbarHeight = document.querySelector( '.ukm-site-navbar' );
+		var offset = ( headerHeight ? headerHeight.offsetHeight : 80 )
+		           + ( navbarHeight ? navbarHeight.offsetHeight : 52 );
+
+		document.querySelectorAll( 'a[href^="#"]' ).forEach( function ( anchor ) {
+			anchor.addEventListener( 'click', function ( e ) {
+				var target = document.querySelector( this.getAttribute( 'href' ) );
+				if ( target ) {
+					e.preventDefault();
+					var top = target.getBoundingClientRect().top + window.scrollY - offset - 16;
+					window.scrollTo( { top: top, behavior: 'smooth' } );
+				}
+			} );
+		} );
 	}
 
 	// Inisialisasi semua fitur navigasi.
 	document.addEventListener( 'DOMContentLoaded', function () {
 		initMobileMenu();
-		initSearchPanel();
 		initStickyHeader();
+		initNavbarActiveState();
+		initSmoothScroll();
 	} );
 
 } )();

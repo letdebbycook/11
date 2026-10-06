@@ -290,8 +290,76 @@ function ukm_customize_register( $wp_customize ) {
 			'type'    => 'textarea',
 		)
 	);
+
+	// ============================================================
+	// Section: Top Bar
+	// ============================================================
+
+	$wp_customize->add_section(
+		'ukm_section_topbar',
+		array(
+			'title'    => __( 'Top Bar', 'ukm-toko-theme' ),
+			'panel'    => 'ukm_tema_panel',
+			'priority' => 8,
+		)
+	);
+
+	// Toggle tampilkan top bar.
+	$wp_customize->add_setting(
+		'ukm_show_topbar',
+		array(
+			'default'           => true,
+			'transport'         => 'refresh',
+			'sanitize_callback' => 'ukm_sanitize_checkbox',
+		)
+	);
+
+	$wp_customize->add_control(
+		'ukm_show_topbar',
+		array(
+			'label'   => __( 'Tampilkan Top Bar', 'ukm-toko-theme' ),
+			'section' => 'ukm_section_topbar',
+			'type'    => 'checkbox',
+		)
+	);
+
+	// ============================================================
+	// Section: Halaman Depan (Hero)
+	// ============================================================
+
+	$wp_customize->add_section(
+		'ukm_section_hero',
+		array(
+			'title'    => __( 'Halaman Depan — Hero', 'ukm-toko-theme' ),
+			'panel'    => 'ukm_tema_panel',
+			'priority' => 15,
+		)
+	);
+
+	// Gambar Hero.
+	$wp_customize->add_setting(
+		'ukm_hero_image',
+		array(
+			'default'           => 0,
+			'transport'         => 'refresh',
+			'sanitize_callback' => 'absint',
+		)
+	);
+
+	$wp_customize->add_control(
+		new WP_Customize_Media_Control(
+			$wp_customize,
+			'ukm_hero_image',
+			array(
+				'label'     => __( 'Gambar Hero Halaman Depan', 'ukm-toko-theme' ),
+				'section'   => 'ukm_section_hero',
+				'mime_type' => 'image',
+			)
+		)
+	);
 }
 add_action( 'customize_register', 'ukm_customize_register' );
+
 
 /**
  * Sanitasi nilai checkbox Customizer.

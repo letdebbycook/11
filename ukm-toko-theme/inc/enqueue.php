@@ -249,7 +249,8 @@ function ukm_remove_emoji_dns_prefetch( $urls, $relation_type ) {
  * @return string URL tanpa ?ver=...
  */
 function ukm_remove_asset_version( $src ) {
-	if ( strpos( $src, 'ver=' ) ) {
+	$wp_version = get_bloginfo( 'version' );
+	if ( false !== strpos( $src, 'ver=' . $wp_version ) ) {
 		$src = remove_query_arg( 'ver', $src );
 	}
 	return $src;

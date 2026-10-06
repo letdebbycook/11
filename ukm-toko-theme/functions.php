@@ -20,7 +20,7 @@ defined( 'ABSPATH' ) || exit;
  * Versi tema — dipakai sebagai cache-buster saat enqueue aset.
  * Selalu perbarui saat ada rilis baru.
  */
-define( 'UKM_THEME_VERSION', '1.0.0' );
+define( 'UKM_THEME_VERSION', '1.1.1' );
 
 /**
  * Direktori tema (dengan trailing slash).

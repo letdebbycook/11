@@ -3,24 +3,10 @@
 # Keamanan + performa untuk shared hosting Apache/LiteSpeed
 # ============================================================
 
-# Aktifkan mod_rewrite untuk WordPress.
+# mod_rewrite rules for root WordPress and HTTPS redirect should be in WordPress root .htaccess, not inside theme folder.
+# In local development (HTTP), forcing HTTPS here breaks loading of theme CSS/JS assets.
 <IfModule mod_rewrite.c>
-RewriteEngine On
-RewriteBase /
-
-# Redirect HTTP ke HTTPS (paksa SSL).
-RewriteCond %{HTTPS} off
-RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
-
-# Redirect www ke non-www (pilih salah satu, sesuaikan dengan domain).
-# RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
-# RewriteRule ^ https://%1%{REQUEST_URI} [L,R=301]
-
-# WordPress default rewrite rules.
-RewriteRule ^index\.php$ - [L]
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule . /index.php [L]
+# RewriteEngine Off
 </IfModule>
 
 # ============================================================
